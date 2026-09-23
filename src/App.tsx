@@ -4,6 +4,7 @@ import type { Product, CartItem } from './types';
 import { Navbar } from './components/Navbar';
 import { ProductCard } from './components/ProductCard';
 import { CartDrawer } from './components/CartDrawer';
+import { Footer } from './components/Footer';
 
 export function App() {
   const [searchTerm, setSearchTerm] = useState('');
@@ -116,6 +117,8 @@ export function App() {
           </div>
         )}
       </main>
+
+      <Footer />
 
       {/* Slide-out Cart */}
       <CartDrawer
