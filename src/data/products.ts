@@ -1,5 +1,5 @@
 import rawProducts from './products.json';
-import { Product } from '../types';
+import type { Product } from '../types';
 
 export const PRODUCTS: Product[] = (rawProducts as any[]).map((item) => ({
   _id: item._id?.$oid || item._id || String(Math.random()),

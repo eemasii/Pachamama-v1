@@ -1,4 +1,5 @@
 import { useState, useMemo } from 'react';
+import './index.css';
 import { PRODUCTS, CATEGORIES } from './data/products';
 import type { Product, CartItem } from './types';
 import { Navbar } from './components/Navbar';
