@@ -28,7 +28,7 @@ export const CategoryFilter: React.FC<CategoryFilterProps> = ({
         onMouseLeave={handleMouseLeaveOrUp}
         onMouseUp={handleMouseLeaveOrUp}
         onMouseMove={handleMouseMove}
-        className={`flex items-center gap-2 overflow-x-auto pb-4 scrollbar-none select-none ${
+        className={`flex items-center gap-2 overflow-x-auto py-2.5 px-1.5 scrollbar-none select-none ${
           isMouseDown ? 'cursor-grabbing' : 'cursor-grab'
         }`}
       >
@@ -38,7 +38,7 @@ export const CategoryFilter: React.FC<CategoryFilterProps> = ({
             onClick={() => onSelectCategory(cat)}
             className={`px-5 py-2.5 rounded-full text-sm font-semibold whitespace-nowrap transition-all duration-200 cursor-pointer ${
               selectedCategory === cat
-                ? 'bg-[#c85a32] text-white shadow-md scale-105'
+                ? 'bg-[#c85a32] text-white shadow-md font-bold'
                 : 'bg-white text-gray-700 hover:bg-emerald-50 border border-gray-200'
             }`}
           >
