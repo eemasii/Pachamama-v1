@@ -1,4 +1,3 @@
-import React from 'react';
 import { MapPin, Phone, Clock, Leaf } from 'lucide-react';
 
 // Ícono nativo de Instagram para evitar errores de versión en lucide-react
@@ -80,16 +79,16 @@ export function Footer() {
               <ul className="space-y-2.5 text-xs text-emerald-100/80">
                 <li className="flex items-center gap-2.5">
                   <MapPin className="w-4 h-4 text-[#c85a32] flex-shrink-0" />
-                  <span>Rademacher 3492</span>
+                  <span>Posadas, Misiones</span>
                 </li>
                 <li className="flex items-center gap-2.5">
                   <Phone className="w-4 h-4 text-[#c85a32] flex-shrink-0" />
-                  <span>+54 9 376 480-9283</span>
+                  <span>+54 9 376 400-0000</span>
                 </li>
                 <li className="flex items-center gap-2.5">
                   <InstagramIcon className="w-4 h-4 text-[#c85a32] flex-shrink-0" />
                   <a
-                    href="https://www.instagram.com/pachamamacolorada/"
+                    href="https://instagram.com"
                     target="_blank"
                     rel="noreferrer"
                     className="hover:underline hover:text-white transition"
