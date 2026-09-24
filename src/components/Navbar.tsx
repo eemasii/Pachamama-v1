@@ -16,46 +16,27 @@ export const Navbar: React.FC<NavbarProps> = ({
 }) => {
   return (
     <header className="sticky top-0 z-40 bg-[#1b3b2b] text-[#f8f6f0] shadow-md border-b border-[#c85a32]/20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 sm:py-0 sm:h-20 flex flex-wrap sm:flex-nowrap items-center justify-between gap-3 sm:gap-4">
         
         {/* Lado Izquierdo: Logo / Marca */}
-        <div className="flex-1 flex items-center justify-start gap-3 min-w-0">
-          <div className="bg-[#c85a32] p-2.5 rounded-2xl shadow-inner flex items-center justify-center flex-shrink-0">
-            <Leaf className="w-6 h-6 text-white" />
+        <div className="flex items-center gap-2.5 sm:gap-3 min-w-0 flex-1 sm:flex-initial">
+          <div className="bg-[#c85a32] p-2 sm:p-2.5 rounded-2xl shadow-inner flex items-center justify-center flex-shrink-0">
+            <Leaf className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
           </div>
-          <div className="hidden sm:block truncate">
-            <h1 className="text-xl sm:text-2xl font-black tracking-tight leading-none text-[#f8f6f0]">
+          <div className="min-w-0">
+            <h1 className="text-base sm:text-xl md:text-2xl font-black tracking-tight leading-none text-[#f8f6f0] truncate">
               Pachamama Colorada
             </h1>
-            <span className="text-[11px] text-[#e28763] font-semibold tracking-wider uppercase block mt-1">
-              Dietética & Alimentos Naturales
+            <span className="text-[10px] sm:text-[11px] text-[#e28763] font-semibold tracking-wider uppercase block mt-0.5 sm:mt-1 truncate">
+              Dietética & Alimentos
             </span>
           </div>
-          <div className="sm:hidden">
-            <h1 className="text-base font-black text-[#f8f6f0] leading-none">
-              Pachamama
-            </h1>
-          </div>
         </div>
 
-        {/* Centro: Buscador */}
-        <div className="flex-1 max-w-md mx-auto">
-          <div className="relative w-full">
-            <Search className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-emerald-300/70 pointer-events-none" />
-            <input
-              type="text"
-              placeholder="Buscar frutos secos, semillas..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full bg-white/10 text-white placeholder-emerald-100/60 pl-10 pr-4 py-2.5 rounded-xl text-sm border border-emerald-500/20 focus:outline-none focus:bg-white/20 focus:border-[#c85a32] transition duration-200"
-            />
-          </div>
-        </div>
-
-        {/* Lado Derecho: Horarios Prolijos + Carrito */}
-        <div className="flex-1 flex items-center justify-end gap-3 sm:gap-4">
+        {/* Lado Derecho: Horarios + Carrito (En móvil se ubica arriba a la derecha) */}
+        <div className="flex items-center justify-end gap-3 order-2 sm:order-3 sm:flex-1">
           
-          {/* Badge Informativo de Horarios (Limpio y en 2 líneas exactas) */}
+          {/* Badge Informativo de Horarios (Solo visible en pantallas XL) */}
           <div className="hidden xl:flex items-center gap-3 bg-white/5 border border-white/10 py-2 px-3.5 rounded-xl whitespace-nowrap">
             <Clock className="w-4 h-4 text-[#e28763] flex-shrink-0" />
             
@@ -81,7 +62,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           {/* Botón de Carrito */}
           <button
             onClick={onOpenCart}
-            className="relative bg-[#c85a32] hover:bg-[#b34e2a] active:scale-95 text-white p-3 rounded-2xl transition shadow-md flex items-center justify-center cursor-pointer flex-shrink-0"
+            className="relative bg-[#c85a32] hover:bg-[#b34e2a] active:scale-95 text-white p-2.5 sm:p-3 rounded-2xl transition shadow-md flex items-center justify-center cursor-pointer flex-shrink-0"
             aria-label="Abrir carrito"
           >
             <ShoppingBag className="w-5 h-5" />
@@ -94,7 +75,23 @@ export const Navbar: React.FC<NavbarProps> = ({
 
         </div>
 
+        {/* Centro: Buscador (En móvil pasa a una 2da fila ocupando el 100% del ancho) */}
+        <div className="w-full order-3 sm:order-2 sm:w-auto sm:flex-1 sm:max-w-md sm:mx-auto">
+          <div className="relative w-full">
+            <Search className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-emerald-300/70 pointer-events-none" />
+            <input
+              type="text"
+              placeholder="Buscar frutos secos, semillas..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="w-full bg-white/10 text-white placeholder-emerald-100/60 pl-10 pr-4 py-2 sm:py-2.5 rounded-xl text-sm border border-emerald-500/20 focus:outline-none focus:bg-white/20 focus:border-[#c85a32] transition duration-200"
+            />
+          </div>
+        </div>
+
       </div>
     </header>
   );
 };
+
+export default Navbar;
