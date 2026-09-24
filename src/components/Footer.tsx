@@ -62,7 +62,7 @@ export function Footer() {
                   <div>
                     <span className="font-bold block text-white text-sm">Sábados</span>
                     <span className="text-xs text-emerald-100/80 font-medium">
-                      08:00 a 12:30 hs
+                      09:00 a 12:30 hs
                     </span>
                   </div>
                 </div>
@@ -79,21 +79,21 @@ export function Footer() {
               <ul className="space-y-2.5 text-xs text-emerald-100/80">
                 <li className="flex items-center gap-2.5">
                   <MapPin className="w-4 h-4 text-[#c85a32] flex-shrink-0" />
-                  <span>Posadas, Misiones</span>
+                  <span>Rademacher 3492</span>
                 </li>
                 <li className="flex items-center gap-2.5">
                   <Phone className="w-4 h-4 text-[#c85a32] flex-shrink-0" />
-                  <span>+54 9 376 400-0000</span>
+                  <span>+54 9 376 480-9283</span>
                 </li>
                 <li className="flex items-center gap-2.5">
                   <InstagramIcon className="w-4 h-4 text-[#c85a32] flex-shrink-0" />
                   <a
-                    href="https://instagram.com"
+                    href="https://www.instagram.com/pachamamacolorada/"
                     target="_blank"
                     rel="noreferrer"
                     className="hover:underline hover:text-white transition"
                   >
-                    @pachamama.colorada
+                    @pachamamacolorada
                   </a>
                 </li>
               </ul>
