@@ -13,19 +13,8 @@ export function useCart() {
     localStorage.setItem('pachamama_cart', JSON.stringify(cartItems));
   }, [cartItems]);
 
-  const addToCart = (product: Product) => {
-    setCartItems((prev) => {
-      const existing = prev.find((item) => item.product._id === product._id);
-      if (existing) {
-        return prev.map((item) =>
-          item.product._id === product._id
-            ? { ...item, quantity: item.quantity + 1 }
-            : item
-        );
-      }
-      return [...prev, { product, quantity: 1 }];
-    });
-    setToastMessage(`¡${product.title} agregado al carrito!`);
+  const removeItem = (productId: string) => {
+    setCartItems((prev) => prev.filter((item) => item.product._id !== productId));
   };
 
   const updateQuantity = (productId: string, quantity: number) => {
@@ -40,8 +29,19 @@ export function useCart() {
     );
   };
 
-  const removeItem = (productId: string) => {
-    setCartItems((prev) => prev.filter((item) => item.product._id !== productId));
+  const addToCart = (product: Product) => {
+    setCartItems((prev) => {
+      const existing = prev.find((item) => item.product._id === product._id);
+      if (existing) {
+        return prev.map((item) =>
+          item.product._id === product._id
+            ? { ...item, quantity: item.quantity + 1 }
+            : item
+        );
+      }
+      return [...prev, { product, quantity: 1 }];
+    });
+    setToastMessage(`¡${product.title} agregado al carrito!`);
   };
 
   const clearCart = () => {

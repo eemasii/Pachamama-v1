@@ -1,4 +1,3 @@
-import React from 'react';
 import type { Product } from '../types';
 import { ShoppingBag } from 'lucide-react';
 
@@ -7,7 +6,7 @@ interface ProductCardProps {
   onAddToCart: (product: Product) => void;
 }
 
-export const ProductCard: React.FC<ProductCardProps> = ({ product, onAddToCart }) => {
+export function ProductCard({ product, onAddToCart }: ProductCardProps) {
   return (
     <div className="bg-white rounded-3xl p-4 border border-gray-200/80 shadow-xs hover:shadow-md transition duration-300 flex flex-col justify-between group">
       <div>
@@ -39,7 +38,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onAddToCart }
         )}
       </div>
 
-      {/* Precio y Botón Agregar (Sin etiqueta de unidad) */}
+      {/* Precio y Botón Agregar */}
       <div className="mt-4 pt-3 border-t border-gray-100 flex items-center justify-between">
         <div>
           <span className="text-[10px] uppercase font-bold text-gray-400 block tracking-wider">
@@ -60,6 +59,6 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onAddToCart }
       </div>
     </div>
   );
-};
+}
 
 export default ProductCard;
