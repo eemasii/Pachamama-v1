@@ -1,6 +1,6 @@
 import React from 'react';
 import type { Product } from '../types';
-import { Plus } from 'lucide-react';
+import { ShoppingBag } from 'lucide-react';
 
 interface ProductCardProps {
   product: Product;
@@ -9,61 +9,57 @@ interface ProductCardProps {
 
 export const ProductCard: React.FC<ProductCardProps> = ({ product, onAddToCart }) => {
   return (
-    <div className="bg-white rounded-2xl overflow-hidden border border-emerald-900/10 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col h-full group">
-      
-      {/* Contenedor de la Imagen: Proporción 1:1 Cuadrada */}
-      <div className="relative w-full aspect-square overflow-hidden bg-gray-100 flex items-center justify-center">
-        <img
-          src={product.imageUrl}
-          alt={product.title}
-          loading="lazy"
-          decoding="async"
-          className="w-full h-full object-cover object-center group-hover:scale-105 transition duration-500 ease-out"
-          onError={(e) => {
-            (e.target as HTMLImageElement).src =
-              'https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&q=80&w=600';
-          }}
-        />
-        
-        {/* Badge Categoría */}
-        <span className="absolute top-3 left-3 bg-[#1b3b2b]/90 backdrop-blur-md text-[#f8f6f0] text-[11px] font-bold px-3 py-1 rounded-full shadow-sm tracking-wide z-10">
-          {product.category}
-        </span>
+    <div className="bg-white rounded-3xl p-4 border border-gray-200/80 shadow-xs hover:shadow-md transition duration-300 flex flex-col justify-between group">
+      <div>
+        {/* Contenedor de Imagen Lleno y Bien Encuadrado */}
+        <div className="relative aspect-square w-full rounded-2xl bg-[#f3efe6] overflow-hidden mb-3">
+          <img
+            src={product.imageUrl}
+            alt={product.title}
+            className="w-full h-full object-cover group-hover:scale-105 transition duration-300"
+            onError={(e) => {
+              (e.target as HTMLImageElement).src =
+                'https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&q=80&w=600';
+            }}
+          />
+          <span className="absolute top-2 left-2 bg-[#c85a32]/10 text-[#c85a32] border border-[#c85a32]/20 text-[10px] font-bold px-2.5 py-0.5 rounded-full uppercase tracking-wider backdrop-blur-xs z-10">
+            {product.category}
+          </span>
+        </div>
+
+        {/* Título y Descripción */}
+        <h3 className="font-extrabold text-[#1b3b2b] text-base leading-snug line-clamp-2">
+          {product.title}
+        </h3>
+
+        {product.description && (
+          <p className="text-xs text-gray-500 line-clamp-2 mt-1 leading-relaxed">
+            {product.description}
+          </p>
+        )}
       </div>
 
-      {/* Cuerpo de la tarjeta */}
-      <div className="p-5 flex flex-col flex-1 justify-between gap-4">
-        <div className="space-y-1.5">
-          <h3 className="font-bold text-gray-800 text-lg leading-snug group-hover:text-[#c85a32] transition-colors">
-            {product.title}
-          </h3>
-          <p className="text-gray-500 text-xs leading-relaxed line-clamp-2">
-            {product.description || 'Producto fresco y natural de primera calidad.'}
+      {/* Precio y Botón Agregar (Sin etiqueta de unidad) */}
+      <div className="mt-4 pt-3 border-t border-gray-100 flex items-center justify-between">
+        <div>
+          <span className="text-[10px] uppercase font-bold text-gray-400 block tracking-wider">
+            Precio
+          </span>
+          <p className="text-lg font-black text-[#1b3b2b] leading-none mt-0.5">
+            ${product.price.toLocaleString('es-AR')}
           </p>
         </div>
 
-        {/* Precio y Acción */}
-        <div className="flex items-end justify-between pt-3 border-t border-gray-100">
-          <div>
-            <span className="text-2xl font-black text-[#1b3b2b] tracking-tight">
-              ${product.price.toLocaleString('es-AR')}
-            </span>
-            {product.unit && (
-              <span className="text-[11px] text-gray-400 font-medium block">
-                por {product.unit}
-              </span>
-            )}
-          </div>
-
-          <button
-            onClick={() => onAddToCart(product)}
-            className="flex items-center gap-1.5 bg-[#1b3b2b] hover:bg-[#c85a32] active:scale-95 text-white px-3.5 py-2.5 rounded-xl text-xs font-bold transition duration-200 shadow-md cursor-pointer"
-          >
-            <Plus className="w-4 h-4" />
-            <span>Agregar</span>
-          </button>
-        </div>
+        <button
+          onClick={() => onAddToCart(product)}
+          className="bg-[#1b3b2b] hover:bg-[#c85a32] text-white p-2.5 rounded-2xl transition duration-200 shadow-xs active:scale-95 cursor-pointer flex items-center justify-center"
+          title="Agregar al carrito"
+        >
+          <ShoppingBag className="w-5 h-5" />
+        </button>
       </div>
     </div>
   );
 };
+
+export default ProductCard;

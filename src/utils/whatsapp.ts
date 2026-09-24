@@ -1,4 +1,4 @@
-import type { CartItem } from '../../types';
+import type { CartItem } from '../types';
 
 export const PHONE_NUMBER = '5493764000000'; // Reemplazar por el número de WhatsApp de Pachamama Colorada
 
