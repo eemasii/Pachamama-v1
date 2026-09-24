@@ -1,7 +1,7 @@
 export interface Product {
   _id: string;
   title: string;
-  description: string;
+  description?: string;
   price: number;
   imageUrl: string;
   category: string;
@@ -14,11 +14,17 @@ export interface CartItem {
   quantity: number;
 }
 
-export type Category = 
-  | 'Todos'
+export type Category =
   | 'Frutos secos'
   | 'Semillas y Cereales'
   | 'Harinas y Legumbres'
   | 'Suplementos y Té'
   | 'Orgánicos';
-  
+
+export const CATEGORIES: Category[] = [
+  'Frutos secos',
+  'Semillas y Cereales',
+  'Harinas y Legumbres',
+  'Suplementos y Té',
+  'Orgánicos',
+];

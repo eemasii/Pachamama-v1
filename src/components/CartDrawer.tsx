@@ -1,7 +1,7 @@
 import React from 'react';
 import type { CartItem } from '../types';
 import { X, Trash2, Plus, Minus, ShoppingBag, MessageCircle } from 'lucide-react';
-import { generateWhatsAppLink } from '../utils/whatsapp';
+import { generateWhatsAppLink } from './utils/whatsapp';
 import { STORE_CONFIG } from '../constants/config';
 
 interface CartDrawerProps {

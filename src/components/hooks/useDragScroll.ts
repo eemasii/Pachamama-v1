@@ -21,7 +21,7 @@ export function useDragScroll() {
     if (!isMouseDown || !ref.current) return;
     e.preventDefault();
     const x = e.pageX - ref.current.offsetLeft;
-    const walk = (x - startX) * 1.8;
+    const walk = (x - startX) * 1.5;
     ref.current.scrollLeft = scrollLeft - walk;
   };
 

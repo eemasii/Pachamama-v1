@@ -1,5 +1,5 @@
 import React from 'react';
-import { useDragScroll } from '../hooks/useDragScroll';
+import { useDragScroll } from './hooks/useDragScroll';
 
 interface CategoryFilterProps {
   categories: string[];
