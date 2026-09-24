@@ -1,6 +1,6 @@
 import React from 'react';
 import type { Product } from '../types';
-import { Plus, CheckCircle2 } from 'lucide-react';
+import { Plus } from 'lucide-react';
 
 interface ProductCardProps {
   product: Product;
@@ -11,12 +11,14 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onAddToCart }
   return (
     <div className="bg-white rounded-2xl overflow-hidden border border-emerald-900/10 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col h-full group">
       
-      {/* Imagen + Etiqueta */}
-      <div className="relative h-52 overflow-hidden bg-[#f3efe6]">
+      {/* Contenedor de la Imagen: Proporción 1:1 Cuadrada */}
+      <div className="relative w-full aspect-square overflow-hidden bg-gray-100 flex items-center justify-center">
         <img
           src={product.imageUrl}
           alt={product.title}
-          className="w-full h-full object-cover group-hover:scale-108 transition duration-500 ease-out"
+          loading="lazy"
+          decoding="async"
+          className="w-full h-full object-cover object-center group-hover:scale-105 transition duration-500 ease-out"
           onError={(e) => {
             (e.target as HTMLImageElement).src =
               'https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&q=80&w=600';
@@ -24,7 +26,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onAddToCart }
         />
         
         {/* Badge Categoría */}
-        <span className="absolute top-3 left-3 bg-[#1b3b2b]/95 backdrop-blur-md text-[#f8f6f0] text-[11px] font-bold px-3 py-1 rounded-full shadow-sm tracking-wide">
+        <span className="absolute top-3 left-3 bg-[#1b3b2b]/90 backdrop-blur-md text-[#f8f6f0] text-[11px] font-bold px-3 py-1 rounded-full shadow-sm tracking-wide z-10">
           {product.category}
         </span>
       </div>
