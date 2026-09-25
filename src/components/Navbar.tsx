@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Search, ShoppingBag, Leaf, Clock } from 'lucide-react';
 
 interface NavbarProps {
@@ -8,12 +8,50 @@ interface NavbarProps {
   onOpenCart: () => void;
 }
 
+// Función auxiliar para determinar si el local está abierto
+const checkIsOpen = (): boolean => {
+  const now = new Date();
+  const day = now.getDay(); // 0 = Domingo, 1 = Lunes, ..., 6 = Sábado
+  const minutes = now.getHours() * 60 + now.getMinutes();
+
+  const m8_00 = 8 * 60;          // 08:00 hs (480 min)
+  const m12_30 = 12 * 60 + 30;   // 12:30 hs (750 min)
+  const m15_30 = 15 * 60 + 30;   // 15:30 hs (930 min)
+  const m20_00 = 20 * 60;        // 20:00 hs (1200 min)
+
+  // Domingo: Cerrado todo el día
+  if (day === 0) return false;
+
+  // Lunes a Viernes: 08:00 a 12:30 hs y 15:30 a 20:00 hs
+  if (day >= 1 && day <= 5) {
+    return (minutes >= m8_00 && minutes < m12_30) || (minutes >= m15_30 && minutes < m20_00);
+  }
+
+  // Sábados: 08:00 a 12:30 hs
+  if (day === 6) {
+    return minutes >= m8_00 && minutes < m12_30;
+  }
+
+  return false;
+};
+
 export const Navbar: React.FC<NavbarProps> = ({
   searchTerm,
   setSearchTerm,
   cartCount,
   onOpenCart,
 }) => {
+  const [isOpen, setIsOpen] = useState<boolean>(checkIsOpen);
+
+  // Revalida el estado del horario cada 60 segundos
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIsOpen(checkIsOpen());
+    }, 60000);
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <header className="sticky top-0 z-40 bg-[#1b3b2b] text-[#f8f6f0] shadow-md border-b border-[#c85a32]/20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 sm:py-0 sm:h-20 flex flex-wrap sm:flex-nowrap items-center justify-between gap-3 sm:gap-4">
@@ -33,10 +71,10 @@ export const Navbar: React.FC<NavbarProps> = ({
           </div>
         </div>
 
-        {/* Lado Derecho: Horarios + Carrito (En móvil se ubica arriba a la derecha) */}
+        {/* Lado Derecho: Horarios + Carrito */}
         <div className="flex items-center justify-end gap-3 order-2 sm:order-3 sm:flex-1">
           
-          {/* Badge Informativo de Horarios (Solo visible en pantallas XL) */}
+          {/* Badge Dinámico de Horarios (Visible en pantallas grandes) */}
           <div className="hidden xl:flex items-center gap-3 bg-white/5 border border-white/10 py-2 px-3.5 rounded-xl whitespace-nowrap">
             <Clock className="w-4 h-4 text-[#e28763] flex-shrink-0" />
             
@@ -47,15 +85,26 @@ export const Navbar: React.FC<NavbarProps> = ({
               </div>
               <div className="flex items-center gap-1.5">
                 <span className="font-bold text-white">Sábados:</span>
-                <span className="text-emerald-100/80">9 a 12:30 hs</span>
+                <span className="text-emerald-100/80">8 a 12:30 hs</span>
               </div>
             </div>
 
             <div className="w-px h-6 bg-emerald-500/30 mx-0.5" />
 
-            <div className="flex items-center gap-1.5 text-emerald-200">
-              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-              <span className="font-bold text-emerald-300 text-xs">Abierto</span>
+            {/* Estado Dinámico Abierto / Cerrado */}
+            <div className="flex items-center gap-1.5">
+              <span
+                className={`w-2 h-2 rounded-full ${
+                  isOpen ? 'bg-emerald-400 animate-pulse' : 'bg-rose-400'
+                }`}
+              />
+              <span
+                className={`font-bold text-xs ${
+                  isOpen ? 'text-emerald-300' : 'text-rose-300'
+                }`}
+              >
+                {isOpen ? 'Abierto' : 'Cerrado'}
+              </span>
             </div>
           </div>
 
@@ -75,7 +124,7 @@ export const Navbar: React.FC<NavbarProps> = ({
 
         </div>
 
-        {/* Centro: Buscador (En móvil pasa a una 2da fila ocupando el 100% del ancho) */}
+        {/* Buscador Adaptativo */}
         <div className="w-full order-3 sm:order-2 sm:w-auto sm:flex-1 sm:max-w-md sm:mx-auto">
           <div className="relative w-full">
             <Search className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-emerald-300/70 pointer-events-none" />
