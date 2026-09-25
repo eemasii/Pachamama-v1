@@ -54,10 +54,10 @@ export const Navbar: React.FC<NavbarProps> = ({
 
   return (
     <header className="sticky top-0 z-40 bg-[#1b3b2b] text-[#f8f6f0] shadow-md border-b border-[#c85a32]/20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 sm:py-0 sm:h-20 flex flex-wrap sm:flex-nowrap items-center justify-between gap-3 sm:gap-4">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 sm:py-0 sm:h-20 flex flex-wrap items-center justify-between gap-3 sm:grid sm:grid-cols-3 sm:gap-4">
         
-        {/* Lado Izquierdo: Logo / Marca */}
-        <div className="flex items-center gap-2.5 sm:gap-3 min-w-0 flex-1 sm:flex-initial">
+        {/* Columna 1 (Izquierda): Logo / Marca */}
+        <div className="flex items-center gap-2.5 sm:gap-3 order-1 sm:order-none justify-start min-w-0">
           <div className="bg-[#c85a32] p-2 sm:p-2.5 rounded-2xl shadow-inner flex items-center justify-center flex-shrink-0">
             <Leaf className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
           </div>
@@ -71,8 +71,22 @@ export const Navbar: React.FC<NavbarProps> = ({
           </div>
         </div>
 
-        {/* Lado Derecho: Horarios + Carrito */}
-        <div className="flex items-center justify-end gap-3 order-2 sm:order-3 sm:flex-1">
+        {/* Columna 2 (Centro): Buscador Exactamente Centrado */}
+        <div className="w-full order-3 sm:order-none sm:w-auto flex justify-center">
+          <div className="relative w-full sm:max-w-md">
+            <Search className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-emerald-300/70 pointer-events-none" />
+            <input
+              type="text"
+              placeholder="Buscar frutos secos, semillas..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="w-full bg-white/10 text-white placeholder-emerald-100/60 pl-10 pr-4 py-2 sm:py-2.5 rounded-xl text-sm border border-emerald-500/20 focus:outline-none focus:bg-white/20 focus:border-[#c85a32] transition duration-200"
+            />
+          </div>
+        </div>
+
+        {/* Columna 3 (Derecha): Horarios + Carrito */}
+        <div className="flex items-center justify-end gap-3 order-2 sm:order-none">
           
           {/* Badge Dinámico de Horarios (Visible en pantallas grandes) */}
           <div className="hidden xl:flex items-center gap-3 bg-white/5 border border-white/10 py-2 px-3.5 rounded-xl whitespace-nowrap">
@@ -122,20 +136,6 @@ export const Navbar: React.FC<NavbarProps> = ({
             )}
           </button>
 
-        </div>
-
-        {/* Buscador Adaptativo */}
-        <div className="w-full order-3 sm:order-2 sm:w-auto sm:flex-1 sm:max-w-md sm:mx-auto">
-          <div className="relative w-full">
-            <Search className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-emerald-300/70 pointer-events-none" />
-            <input
-              type="text"
-              placeholder="Buscar frutos secos, semillas..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full bg-white/10 text-white placeholder-emerald-100/60 pl-10 pr-4 py-2 sm:py-2.5 rounded-xl text-sm border border-emerald-500/20 focus:outline-none focus:bg-white/20 focus:border-[#c85a32] transition duration-200"
-            />
-          </div>
         </div>
 
       </div>
