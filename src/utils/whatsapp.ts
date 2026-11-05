@@ -1,6 +1,6 @@
 import type { CartItem } from '../types';
 
-export const PHONE_NUMBER = '5493764000000'; // Reemplazar por el número de WhatsApp de Pachamama Colorada
+export const PHONE_NUMBER = '5493764809283';
 
 export function generateWhatsAppMessage(items: CartItem[], total: number): string {
   let text = '🌱 *¡Hola Pachamama Colorada! Quisiera realizar el siguiente pedido:*\n\n';
