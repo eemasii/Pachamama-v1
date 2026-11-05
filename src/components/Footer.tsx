@@ -79,11 +79,25 @@ export function Footer() {
               <ul className="space-y-2.5 text-xs text-emerald-100/80">
                 <li className="flex items-center gap-2.5">
                   <MapPin className="w-4 h-4 text-[#c85a32] flex-shrink-0" />
-                  <span>Rademacher 3492</span>
+                  <a
+                    href="https://share.google/QAbBLXH7p54DoQSA1"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:underline hover:text-white transition"
+                  >
+                    Av. Rademacher 2880
+                  </a>
                 </li>
                 <li className="flex items-center gap-2.5">
                   <Phone className="w-4 h-4 text-[#c85a32] flex-shrink-0" />
-                  <span>+54 9 376 480-9283</span>
+                  <a
+                    href="https://wa.me/5493764809283"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:underline hover:text-white transition"
+                  >
+                    +54 9 376 480-9283
+                  </a>
                 </li>
                 <li className="flex items-center gap-2.5">
                   <InstagramIcon className="w-4 h-4 text-[#c85a32] flex-shrink-0" />
