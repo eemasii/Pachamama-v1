@@ -15,6 +15,7 @@ const checkIsOpen = (): boolean => {
   const minutes = now.getHours() * 60 + now.getMinutes();
 
   const m8_00 = 8 * 60;          // 08:00 hs (480 min)
+  const m9_00 = 9 * 60;          // 09:00 hs (540 min)
   const m12_30 = 12 * 60 + 30;   // 12:30 hs (750 min)
   const m15_30 = 15 * 60 + 30;   // 15:30 hs (930 min)
   const m20_00 = 20 * 60;        // 20:00 hs (1200 min)
@@ -27,9 +28,9 @@ const checkIsOpen = (): boolean => {
     return (minutes >= m8_00 && minutes < m12_30) || (minutes >= m15_30 && minutes < m20_00);
   }
 
-  // Sábados: 08:00 a 12:30 hs
+  // Sábados: 09:00 a 12:30 hs
   if (day === 6) {
-    return minutes >= m8_00 && minutes < m12_30;
+    return minutes >= m9_00 && minutes < m12_30;
   }
 
   return false;
@@ -99,7 +100,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               </div>
               <div className="flex items-center gap-1.5">
                 <span className="font-bold text-white">Sábados:</span>
-                <span className="text-emerald-100/80">8 a 12:30 hs</span>
+                <span className="text-emerald-100/80">9 a 12:30 hs</span>
               </div>
             </div>
 
